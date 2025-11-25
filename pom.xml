@@ -7,48 +7,44 @@
     <groupId>groupId</groupId>
     <artifactId>CucumberBasics</artifactId>
     <version>1.0-SNAPSHOT</version>
+    
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <webdrivermanager.version>4.3.1</webdrivermanager.version>
     </properties>
+    
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.9.9</version>
+                <version>3.9.0</version>
                 <configuration>
-                    <source>10</source>
-                    <target>10</target>
+                    <source>17</source>
+                    <target>17</target>
+                    <fork>true</fork>
+                    <executable>${JAVA_HOME}/bin/javac</executable>
+                    <compilerArgs>
+                        <arg>--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
+            
             <plugin>
-		     <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.1</version>
-            <configuration>
-                <fork>true</fork>
-                <executable>${JAVA_HOME}/bin/javac</executable>
-                <compilerArgs>
-                    <arg>--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-                </compilerArgs>
-            </configuration>
-        </plugin>
-    </plugins>
-               <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
-				<configuration>
-				    <suiteXmlFiles>
-					<suiteXmlFile>src/test/java/testng.xml</suiteXmlFile>
-				    </suiteXmlFiles>
-				    <systemPropertyVariables>
-				      <testng.dtd.http>true</testng.dtd.http>
-				    </systemPropertyVariables>
-				</configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/java/testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <testng.dtd.http>true</testng.dtd.http>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
+            
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
@@ -68,20 +64,16 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
     <dependencies>
-
-
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>6.9.1</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
         <dependency>
@@ -90,18 +82,19 @@
             <version>6.9.1</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>6.9.1</version>
         </dependency>
-	    <dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-    <version>1.18.24</version> <!-- Update to the latest stable version -->
-    <scope>provided</scope>
-</dependency>
+        
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
         <dependency>
@@ -118,8 +111,6 @@
             <version>2.15</version>
         </dependency>
 
-
-
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -131,10 +122,8 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.0.0-beta-2</version>
+            <version>4.0.0</version>
         </dependency>
-
-
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
         <dependency>
@@ -149,7 +138,6 @@
             <artifactId>cucumber-reporting</artifactId>
             <version>5.5.2</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.aventstack</groupId>
